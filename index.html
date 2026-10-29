@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NightBite | Campus Night Canteen</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">🍜</span>
+      <span>Night<span class="brand-accent">Bite</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#menu">Menu</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#orders">My orders</a>
+    </nav>
+    <button class="cart-button" id="cart-button" type="button" aria-label="Open your cart">
+      <span>🛒</span> Cart <strong id="cart-count">0</strong>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Campus canteen · Open until 2:00 AM</p>
+        <h1>Good food for<br><span>late-night minds.</span></h1>
+        <p class="hero-text">Skip the queue. Pick your favourites, choose a pickup time, and get back to studying.</p>
+        <a class="primary-button" href="#menu">Browse tonight's menu <span>→</span></a>
+        <div class="hero-stats">
+          <div><strong>4.9</strong><span>★ student rating</span></div>
+          <div><strong>15 min</strong><span>average pickup</span></div>
+          <div><strong>2 AM</strong><span>open tonight</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="sun"></div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Fresh crispy veggie burger">
+          <span class="photo-badge">Student favourite <b>♥</b></span>
+        </div>
+        <div class="floating-note note-one">Fresh & warm ✨</div>
+        <div class="floating-note note-two">Ready in 15 min</div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">What are you craving?</p>
+          <h2>Tonight's menu</h2>
+          <p class="menu-location">📍 Main Campus Canteen <span>·</span> Pickup in about 15 min</p>
+        </div>
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="search-input" type="search" placeholder="Search food..." aria-label="Search food">
+        </label>
+      </div>
+
+      <div class="menu-toolbar">
+        <div class="category-tabs" role="tablist" aria-label="Food categories">
+          <button class="category active" data-category="All" type="button">All items</button>
+          <button class="category" data-category="Meals" type="button">🍛 Meals</button>
+          <button class="category" data-category="Healthy" type="button">🥗 Healthy</button>
+          <button class="category" data-category="Snacks" type="button">🍟 Snacks</button>
+          <button class="category" data-category="Drinks" type="button">🥤 Drinks</button>
+        </div>
+        <button class="clear-filters hidden" id="clear-filters" type="button">Clear filters <span>×</span></button>
+      </div>
+      <div class="menu-hint"><span class="live-dot"></span> Cooking fresh tonight <span class="hint-divider">·</span> <b id="menu-count">16</b> tasty choices</div>
+      <div class="food-grid" id="food-grid"></div>
+      <p class="empty-message hidden" id="empty-message">No items match your search.</p>
+    </section>
+
+    <section class="steps-section" id="how-it-works">
+      <div class="section-heading centered">
+        <p class="eyebrow">Simple as 1, 2, 3</p>
+        <h2>From hungry to happy</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span>01</span><div><h3>Pick your food</h3><p>Browse our fresh night menu and add your favourites.</p></div></div>
+        <div class="step"><span>02</span><div><h3>Choose a time</h3><p>Tell us when you will arrive at the canteen.</p></div></div>
+        <div class="step"><span>03</span><div><h3>Grab and go</h3><p>Show your order number and skip the queue.</p></div></div>
+      </div>
+    </section>
+
+    <section class="orders-section" id="orders">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your activity</p>
+          <h2>My orders</h2>
+        </div>
+        <span class="orders-note">Saved on this device</span>
+      </div>
+      <div id="order-list">
+        <div class="orders-empty"><span>🧾</span><h3>No orders yet</h3><p>Your completed orders will appear here after checkout.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-panel" id="cart-panel" aria-label="Your cart">
+    <div class="cart-header">
+      <div><p class="eyebrow">Your order</p><h2>Pickup cart</h2></div>
+      <button class="close-button" id="close-cart" type="button" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty"><span>🛍️</span><p>Your cart is empty</p><small>Add something delicious for your late-night study session.</small></div>
+    </div>
+    <div class="cart-summary">
+      <label class="pickup-select">Pickup time
+        <select id="pickup-time">
+          <option>As soon as possible · 15 min</option>
+          <option>In 30 minutes</option>
+          <option>In 45 minutes</option>
+          <option>In 1 hour</option>
+        </select>
+      </label>
+      <div><span>Subtotal</span><strong id="cart-total">₹0</strong></div>
+      <button class="primary-button checkout-button" id="checkout-button" type="button" disabled>Continue to pickup <span>→</span></button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <footer>
+    <strong>Night<span class="brand-accent">Bite</span></strong>
+    <span>Made for students, powered by good food.</span>
+    <span>📍 Main Campus Canteen</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
