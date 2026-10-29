@@ -155,8 +155,32 @@ document.querySelector("#clear-filters").addEventListener("click", () => {
 document.querySelector("#cart-button").addEventListener("click", openCart);
 document.querySelector("#close-cart").addEventListener("click", closeCart);
 document.querySelector("#overlay").addEventListener("click", closeCart);
+const menuToggle = document.querySelector("#menu-toggle");
+const navLinks = document.querySelector("#nav-links");
+
+function closeMobileNav() {
+  navLinks.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation");
+}
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+  navLinks.classList.toggle("open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+});
+navLinks.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeMobileNav();
+});
+document.addEventListener("click", (event) => {
+  if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) closeMobileNav();
+});
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeCart();
+  if (event.key === "Escape") {
+    closeCart();
+    closeMobileNav();
+  }
 });
 document.querySelector("#checkout-button").addEventListener("click", () => {
   const pickupTime = document.querySelector("#pickup-time").value;
